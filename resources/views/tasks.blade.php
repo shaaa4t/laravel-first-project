@@ -13,7 +13,8 @@
         <h2>Tasks:</h2>
         <ul>
             @foreach ($tasks as $task)
-            <li>{{$task}}</li>
+            <li>{{$task->id}}</li>
+            <li>{{$task->name}}</li>
             @endforeach
         </ul>
     </center>
