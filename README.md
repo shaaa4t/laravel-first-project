@@ -7,6 +7,10 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+
+## Tasks project
+- It is a CRUD (Create & Read & Update & Delete)
+- Used MySQL as Database
+- Used layouts
 
 ![](/tasks.png)
