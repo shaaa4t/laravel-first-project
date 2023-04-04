@@ -10,7 +10,8 @@
                 <div class="panel-body">
                     <!-- Display Validation Errors -->
                     <!-- New Task Form -->
-                    <form action="{{url('insert')}}" method="POST" class="form-horizontal">
+
+                    <form action="{{ route('task.store') }}" method="POST" class="form-horizontal">
                         @csrf
                         <!-- Task Name -->
                         <div class="form-group">
@@ -34,49 +35,60 @@
             </div>
 
             <!-- Current Tasks -->
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Current Tasks
-                    </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Current Tasks
+                </div>
 
-                    <div class="panel-body">
-                        <table class="table table-striped task-table">
-                            <thead>
-                                <th>Task</th>
-                                <th>&nbsp;</th>
-                            </thead>
-                            <tbody>
-                                @foreach ($tasks as $task)
+                <div class="panel-body">
+                    <table class="table table-striped task-table">
+                        <thead>
+                            <th>Task</th>
+                            <th>&nbsp;</th>
+                        </thead>
+                        <tbody>
+                            @foreach ($tasks as $task)
                                 <tr>
-                                    <td class="table-text"><div>{{$task->name}}</div></td>
+                                    <td class="table-text">
+                                        <div>{{ $task->name }}</div>
+                                    </td>
 
                                     <!-- Task Update Button -->
                                     <td>
-                                        <form action="{{url('update/'.$task->id)}}" method="POST">
+                                        <form action="{{ url('update/' . $task->id) }}" method="POST">
                                             @csrf
-                                            <button type="submit" class="btn btn-edit">
+                                            <button type="submit" class="btn btn-primary">
                                                 <i class="fa fa-btn fa-edit"></i>Update
                                             </button>
                                         </form>
                                     </td>
                                     <!-- Task Delete Button -->
                                     <td>
-                                        <form action="{{url('delete/'.$task->id)}}" method="POST">
+                                        <form action="{{ route('task.delete', $task->id) }}" method="POST">
                                             @csrf
+                                            @method('DELETE')
                                             <button type="submit" class="btn btn-danger">
                                                 <i class="fa fa-btn fa-trash"></i>Delete
                                             </button>
                                         </form>
+                                    </td><!-- Task Delete Button -->
+                                    <td>
+                                        {{-- <form action="{{route('task.delete', $task->id)}}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="btn btn-info">
+                                                <i class="fa fa-btn fa-trash"></i>Edit
+                                            </button>
+                                        </form> --}}
                                     </td>
 
                                 </tr>
-                                @endforeach
+                            @endforeach
 
-                            </tbody>
-                        </table>
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
+            </div>
         </div>
-</div>
-
+    </div>
 @endsection
